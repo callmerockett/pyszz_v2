@@ -4,7 +4,7 @@ import os
 import tempfile
 from typing import List, Set
 
-from options import Options
+from szz.options import Options
 from szz.ma_szz import MASZZ
 from szz.core.abstract_szz import ImpactedFile, BlameData, DetectLineMoved
 

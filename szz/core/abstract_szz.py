@@ -11,7 +11,7 @@ from typing import List, Set
 from git import Commit, Repo
 from pydriller import ModificationType, GitRepository as PyDrillerGitRepo
 
-from options import Options
+from szz.options import Options
 from szz.core.comment_parser import parse_comments
 
 
