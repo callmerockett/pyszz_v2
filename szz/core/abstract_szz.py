@@ -7,6 +7,7 @@ from shutil import copytree
 from shutil import rmtree
 from tempfile import mkdtemp
 from typing import List, Set
+import time
 
 from git import Commit, Repo
 from pydriller import ModificationType, GitRepository as PyDrillerGitRepo
@@ -47,8 +48,16 @@ class AbstractSZZ(ABC):
                     log.error(f'unable to find local repository path: {repo_dir}')
                     exit(-4)
             else:
+                start_cloning = time.time()
                 log.info(f"Cloning repository {repo_full_name}...")
                 Repo.clone_from(url=repo_url, to_path=self._repository_path)
+                end_cloning = time.time()
+                elapsed_time = end_cloning - start_cloning
+                timestamp = int(time.time() * 1000000)
+                with open(f'/measures/download_{timestamp}.txt', 'w+') as file:
+                    file.write(f"{elapsed_time}")
+
+
 
         self._repository = Repo(self._repository_path)
 
